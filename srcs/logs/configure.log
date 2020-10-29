@@ -1,0 +1,154 @@
+[35mINSTALLING METALLB[0m
+configmap/kube-proxy configured
+namespace/metallb-system unchanged
+podsecuritypolicy.policy/controller configured
+podsecuritypolicy.policy/speaker configured
+serviceaccount/controller unchanged
+serviceaccount/speaker unchanged
+clusterrole.rbac.authorization.k8s.io/metallb-system:controller unchanged
+clusterrole.rbac.authorization.k8s.io/metallb-system:speaker unchanged
+role.rbac.authorization.k8s.io/config-watcher unchanged
+role.rbac.authorization.k8s.io/pod-lister unchanged
+clusterrolebinding.rbac.authorization.k8s.io/metallb-system:controller unchanged
+clusterrolebinding.rbac.authorization.k8s.io/metallb-system:speaker unchanged
+rolebinding.rbac.authorization.k8s.io/config-watcher unchanged
+rolebinding.rbac.authorization.k8s.io/pod-lister unchanged
+daemonset.apps/speaker unchanged
+deployment.apps/controller unchanged
+Error from server (AlreadyExists): secrets "memberlist" already exists
+configmap/config unchanged
+[35m
+DELETING PREVIOUS CONFIGURATION[0m
+deployment.apps "ftps-deployment" deleted
+deployment.apps "mysql-deployment" deleted
+deployment.apps "nginx-deployment" deleted
+service "ftps-service" deleted
+service "kubernetes" deleted
+service "mysql-service" deleted
+service "nginx-service" deleted
+[34m
+PREPARING DOCKER AND IMAGES[0m
+Deleted Containers:
+535dfc9631e81a8ae53743b88165f7b89c9c91f5388d5f0bf99bbba0214be09f
+a47bc8c87921591bd20b570ad2a8cbd5df32f27bea77ab448a85ae6d90ec92ff
+
+Deleted Images:
+deleted: sha256:71340f287cb88cb8f6f20a4a6507ee0909c1bdf82d939c5e8d2c64f3935f7c76
+deleted: sha256:62c0bf574090cdce615026511f2105e3ce6a7723fdc5dd0691b4d8fc109753be
+deleted: sha256:7ffaa5c94a69b546019e18de79db19bee58950c6a5075ac52b583cfd417876ba
+deleted: sha256:9c5f89b9358d7d869351051d1e3936d412baeeba1283c0bbd628cb479cc8d493
+untagged: alpine:latest
+untagged: alpine@sha256:c0e9560cda118f9ec63ddefb4a173a2b2a0347082d7dff7dc14272e7841a5b5a
+untagged: my_nginx:latest
+deleted: sha256:55a3cdbfc3029c88642779d9ccb0a744dba8e8d4f60f2b8c749b144680111c73
+deleted: sha256:ee2dadde9195cf36d5bb1ca29e9c8b3af746ef14e60aea5bb82c7f7438da4b8f
+deleted: sha256:16345979bcbe54106c75f9bdde94a01e5d9a6de14a17cdf31815f4007e0c042d
+deleted: sha256:176d9c3e3acdcc13056efcfa4041756f13f1468832a873238c64ece28aa7f363
+deleted: sha256:7949fcc66a5bb39d81d06bd29a433259a95896f9575af46c20811fbc9d48a1ff
+deleted: sha256:aa79066f784b2523b7855de94a6ab84033a55e543f096be4b3198dbfcbbe600f
+deleted: sha256:045efb209dd75a015b73d654d74ff48c2955dcc4eb78fa5dd3f1a65d86988aee
+deleted: sha256:3337bfb849ea7077cbcc54b9ccb79a7d49ea6479a0eeeac21209c00a54fbcbcb
+deleted: sha256:6799ba2f8ec57adcce8abe72652d9b1c529c818d5aa6e53c1154165b107d2e11
+deleted: sha256:768c549a01716d8754c22d7c26f5ea03b3c178a61ee9848527dead9d599ac963
+
+Total reclaimed space: 11.86MB
+Sending build context to Docker daemon  10.75kB
+Step 1/7 : FROM alpine
+latest: Pulling from library/alpine
+Digest: sha256:c0e9560cda118f9ec63ddefb4a173a2b2a0347082d7dff7dc14272e7841a5b5a
+Status: Downloaded newer image for alpine:latest
+ ---> d6e46aa2470d
+Step 2/7 : COPY default.conf /tmp/
+ ---> dba0f08908ff
+Step 3/7 : COPY sshd_config /tmp/
+ ---> 1610968a06d8
+Step 4/7 : COPY index.html /var/www/html/
+ ---> 4e718334455c
+Step 5/7 : RUN apk update && apk add nginx openssl openssh && 			cp /tmp/default.conf /etc/nginx/conf.d/ && 			ssh-keygen -A && echo "root:root" | chpasswd && 			mkdir -p /run/nginx && 			openssl req -x509 -nodes -days 365 			-newkey rsa:2048 -subj "/C=SP/ST=Spain/L=Madrid/O=42/CN=127.0.0.1" 			-keyout /etc/ssl/private/agarzon.key 			-out /etc/ssl/certs/agarzon.crt
+ ---> Running in 03f8b9ce9285
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
+v3.12.1-8-ge053f6efb7 [http://dl-cdn.alpinelinux.org/alpine/v3.12/main]
+v3.12.1-5-g0954f48dc3 [http://dl-cdn.alpinelinux.org/alpine/v3.12/community]
+OK: 12744 distinct packages available
+(1/12) Installing pcre (8.44-r0)
+(2/12) Installing nginx (1.18.0-r1)
+Executing nginx-1.18.0-r1.pre-install
+(3/12) Installing openssh-keygen (8.3_p1-r0)
+(4/12) Installing ncurses-terminfo-base (6.2_p20200523-r0)
+(5/12) Installing ncurses-libs (6.2_p20200523-r0)
+(6/12) Installing libedit (20191231.3.1-r0)
+(7/12) Installing openssh-client (8.3_p1-r0)
+(8/12) Installing openssh-sftp-server (8.3_p1-r0)
+(9/12) Installing openssh-server-common (8.3_p1-r0)
+(10/12) Installing openssh-server (8.3_p1-r0)
+(11/12) Installing openssh (8.3_p1-r0)
+(12/12) Installing openssl (1.1.1g-r0)
+Executing busybox-1.31.1-r19.trigger
+OK: 14 MiB in 26 packages
+ssh-keygen: generating new host keys: RSA DSA ECDSA ED25519 
+[91mchpasswd: password for 'root' changed
+[0m[91mGenerating a RSA private key
+.....+++++
+..[0m[91m...[0m[91m..[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m+[0m[91m+[0m[91m+[0m[91m+[0m[91m+
+[0m[91mwriting new private key to '/etc/ssl/private/agarzon.key'
+[0m[91m-----
+[0mRemoving intermediate container 03f8b9ce9285
+ ---> 23d66a98a605
+Step 6/7 : EXPOSE 80 443 22
+ ---> Running in 5bc1d68ea96a
+Removing intermediate container 5bc1d68ea96a
+ ---> 5f5e1b188272
+Step 7/7 : ENTRYPOINT /usr/sbin/sshd -f /tmp/sshd_config; nginx -g 'daemon off;'
+ ---> Running in 03c198f64c77
+Removing intermediate container 03c198f64c77
+ ---> f11dd9b4ee3d
+Successfully built f11dd9b4ee3d
+Successfully tagged my_nginx:latest
+Sending build context to Docker daemon  11.26kB
+Step 1/5 : FROM alpine
+ ---> d6e46aa2470d
+Step 2/5 : COPY vsftpd.conf /tmp/
+ ---> Using cache
+ ---> 808ac790fe72
+Step 3/5 : RUN apk update && apk add vsftpd && apk add openssl && 	echo "root:root" | chpasswd && 	openssl req -x509 -nodes -days 365 	-newkey rsa:2048 -subj "/C=SP/ST=Spain/L=Madrid/O=42/CN=127.0.0.1" 	-keyout /etc/ssl/private/agarzon.key 	-out /etc/ssl/certs/agarzon.crt && 	mkdir ftps_user
+ ---> Using cache
+ ---> 0c5516d90cb3
+Step 4/5 : EXPOSE 21 30021 20
+ ---> Using cache
+ ---> 26093cb82e43
+Step 5/5 : ENTRYPOINT /usr/sbin/vsftpd /tmp/vsftpd.conf
+ ---> Using cache
+ ---> 1231ad984066
+Successfully built 1231ad984066
+Successfully tagged my_ftps:latest
+Sending build context to Docker daemon  101.9kB
+Step 1/6 : FROM alpine
+ ---> d6e46aa2470d
+Step 2/6 : COPY init.sql /tmp/
+ ---> 09ea29d962e7
+Step 3/6 : COPY wordpress.sql /tmp/
+ ---> 950eaf7dc12d
+Step 4/6 : RUN apk add mysql mysql-client && 	mysql -u root --password= < /tmp/init.sql && 	mysql wordpress -u root --password= < /tmp/wordpress.sql
+ ---> Running in 1ebd80905426
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
+(1/14) Installing mariadb-common (10.4.15-r0)
+(2/14) Installing libaio (0.3.112-r1)
+(3/14) Installing xz-libs (5.2.5-r0)
+(4/14) Installing ncurses-terminfo-base (6.2_p20200523-r0)
+(5/14) Installing ncurses-libs (6.2_p20200523-r0)
+(6/14) Installing linux-pam (1.3.1-r4)
+(7/14) Installing pcre (8.44-r0)
+(8/14) Installing libgcc (9.3.0-r2)
+(9/14) Installing libstdc++ (9.3.0-r2)
+(10/14) Installing libxml2 (2.9.10-r5)
+(11/14) Installing mariadb (10.4.15-r0)
+Executing mariadb-10.4.15-r0.pre-install
+(12/14) Installing mysql (10.4.15-r0)
+(13/14) Installing mariadb-client (10.4.15-r0)
+(14/14) Installing mysql-client (10.4.15-r0)
+Executing busybox-1.31.1-r19.trigger
+OK: 166 MiB in 28 packages
+[91mERROR[0m[91m 2002 (HY000): Can't connect to local MySQL server through socket '/run/mysqld/mysqld.sock' (2)
+[0mThe command '/bin/sh -c apk add mysql mysql-client && 	mysql -u root --password= < /tmp/init.sql && 	mysql wordpress -u root --password= < /tmp/wordpress.sql' returned a non-zero code: 1
