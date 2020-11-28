@@ -2,14 +2,14 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: mysql
+    app: mysql-service
   name: mysql-service
 spec:
   type: ClusterIP
   selector:
-    app: mysql
+    app: mysql-pod
   ports:
-  - name: mysql
+  - name: mysql-ports
     protocol: TCP
     port: 3306
     targetPort: 3306
@@ -20,16 +20,16 @@ kind: Deployment
 metadata:
   name: mysql-deployment
   labels:
-    app: mysql
+    app: mysql-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mysql
+      app: mysql-pod
   template:
     metadata:
       labels:
-        app: mysql
+        app: mysql-pod
     spec:
       containers:
       - image: my_sql
@@ -37,5 +37,32 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 3306
+          name: mysql-cont-port
+        env:
+          - name: MYSQL_DB_NAME
+            valueFrom:
+              secretKeyRef:
+                name: wp-mysql-php-secret
+                key: wordpress-db-name
+          - name: MYSQL_DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: wp-mysql-php-secret
+                key: mysql-db-user
+          - name: MYSQL_DB_PWD
+            valueFrom:
+              secretKeyRef:
+                name: wp-mysql-php-secret
+                key: mysql-db-pwd
+          - name: MYSQL_ADMIN
+            valueFrom:
+              secretKeyRef:
+                name: wp-mysql-php-secret
+                key: mysql-admin
+          - name: MYSQL_ADMIN_PWD
+            valueFrom:
+              secretKeyRef:
+                name: wp-mysql-php-secret
+                key: mysql-admin-pwd
       restartPolicy: Always
 

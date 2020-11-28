@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: php-service
+  name: php-service
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 192.168.99.104
+  selector:
+    app: php-pod
+  ports:
+  - name: php-ports
+    protocol: TCP
+    port: 5000
+    targetPort: 5000
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-deployment
+  labels:
+    app: php-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: php-pod
+  template:
+    metadata:
+      labels:
+        app: php-pod
+    spec:
+      containers:
+      - image: my_php
+        name: php
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
+          name: php-cont-port
+        env:
+          - name: DB_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: mysql-configmap
+                key: wordpress-db-host
+          - name: DB_NAME
+            valueFrom:
+              secretKeyRef:
+                name: wp-mysql-php-secret
+                key: wordpress-db-name
+          - name: DB_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: wp-mysql-php-secret
+                key: mysql-db-user
+          - name: DB_PWD
+            valueFrom:
+              secretKeyRef:
+                name: wp-mysql-php-secret
+                key: mysql-db-pwd
+      restartPolicy: Always

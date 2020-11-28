@@ -49,4 +49,25 @@ spec:
         - containerPort: 80
         - containerPort: 443
         - containerPort: 22
+        env:
+        - name: PHPMYADMIN_IP
+          valueFrom:
+            configMapKeyRef:
+              name: nginx-configmap
+              key: phpmyadmin-svc-ip
+        - name: WORDPRESS_IP
+          valueFrom:
+            configMapKeyRef:
+              name: nginx-configmap
+              key: wordpress-svc-ip
+        - name: WORDPRESS_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: nginx-configmap
+              key: wordpress-port
+        - name: PHPMYADMIN_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: nginx-configmap
+              key: phpmyadmin-port
       restartPolicy: Always
