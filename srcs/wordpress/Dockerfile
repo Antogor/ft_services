@@ -10,15 +10,17 @@ ENV WORDPRESS_SVC_PORT=5050
 
 COPY initWordpress.sh /tmp/
 
-RUN apk add php7 php7-fpm php7-mbstring php7-mysqli php7-json && apk add wget && \
+RUN apk add nginx && \
+	apk add php7 php7-fpm php7-mbstring php7-mysqli php7-json php7-session && apk add wget && \
 	wget https://es.wordpress.org/wordpress-latest-es_ES.tar.gz && \
-	mkdir -p /www/ && \
-	tar -xzvf wordpress-latest-es_ES.tar.gz -C www/ && \
+	mkdir -p /var/www && \
+	tar -xzvf wordpress-latest-es_ES.tar.gz -C /var/www/ && \
 	rm -f wordpress-latest-es_ES.tar.gz && \
-	rm -f /www/wordpress/wp-config-sample.php && \
+	rm -f /var/www/wordpress/wp-config-sample.php && \
 	chmod 777 /tmp/initWordpress.sh
 
-COPY wp-config.php /www/wordpress/
+COPY wp-config.php /var/www/wordpress/
+COPY wp_server.conf /etc/nginx/conf.d
 
 EXPOSE 5050
 

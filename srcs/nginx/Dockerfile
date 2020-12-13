@@ -2,7 +2,6 @@ FROM alpine
 
 COPY default.conf /tmp/
 COPY sshd_config /tmp/
-COPY index.html /var/www/html/
 
 RUN apk update && apk add nginx openssl openssh && \
 			cp /tmp/default.conf /etc/nginx/conf.d/ && \
@@ -12,6 +11,8 @@ RUN apk update && apk add nginx openssl openssh && \
 			-newkey rsa:2048 -subj "/C=SP/ST=Spain/L=Madrid/O=42/CN=127.0.0.1" \
 			-keyout /etc/ssl/private/agarzon.key \
 			-out /etc/ssl/certs/agarzon.crt
+
+COPY index.html /var/www/
 
 EXPOSE 80 443 22 
 

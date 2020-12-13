@@ -1,0 +1,12 @@
+resources:
+  # Configmaps
+  - configmaps/mysql_configmap.yaml
+  - configmaps/nginx_configmap.yaml
+  # Secrets
+  - secrets/wp_mysql_php_secrets.yaml
+  # Services
+  - nginx/nginx_service.yaml
+  - ftps/ftps.yaml
+  - mysql/mysql_service.yaml
+  - wordpress/wordpress_service.yaml
+  - phpMyadmin/php_service.yaml

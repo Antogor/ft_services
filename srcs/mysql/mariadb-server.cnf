@@ -1,4 +1,4 @@
-[mariadb]
+[mysqld]
 user = root
 datadir = /var/lib/mysql/
 port = 3306

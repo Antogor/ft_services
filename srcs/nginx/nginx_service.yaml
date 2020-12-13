@@ -4,6 +4,8 @@ metadata:
   labels:
     app: nginx
   name: nginx-service
+# annotations:
+    #metallb.universe.tf/allow-shared-ip: "sharing key"
 spec:
   type: LoadBalancer
   loadBalancerIP: 192.168.99.101
@@ -70,4 +72,3 @@ spec:
             configMapKeyRef:
               name: nginx-configmap
               key: phpmyadmin-port
-      restartPolicy: Always

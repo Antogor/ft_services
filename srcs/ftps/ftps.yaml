@@ -4,6 +4,8 @@ metadata:
   labels:
     app: ftps
   name: ftps-service
+  #annotations:
+    #metallb.universe.tf/allow-shared-ip: "true"
 spec:
   type: LoadBalancer
   loadBalancerIP: 192.168.99.102
@@ -48,5 +50,3 @@ spec:
         - containerPort: 21
         - containerPort: 20
         - containerPort: 30021
-      restartPolicy: Always
-
