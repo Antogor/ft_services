@@ -22,4 +22,4 @@ COPY config.inc.php /etc/phpmyadmin/config.inc.php
 
 EXPOSE 5000
 
-ENTRYPOINT [ "sh", "/tmp/initPhp.sh" ]
+ENTRYPOINT [ "/tmp/initPhp.sh" ]

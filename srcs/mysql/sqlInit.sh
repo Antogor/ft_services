@@ -1,14 +1,21 @@
 #!/bin/sh
 
+if [ ! -d "/run/mysqld" ]; then
+	mkdir -p /run/mysqld
+	chown -R mysql:mysql /run/mysqld
+fi
 
-mariadb-install-db -u root
+mariadb-install-db --bootstrap --user=root --datadir="/var/lib/mysql/"
 
-mysqld -u root < /tmp/init.sql
+#mysql_secure_installation
 
-#mysql -u root --execute="CREATE DATABASE wordpress;"
-#
+#mariadb-install-db -u root
+
+/usr/bin/mysqld --user=root --bootstrap --verbose=0 < /tmp/init.sql
+
 ##mysql -u root wordpress < wordpress.sql
-#
-#mysql -u root --execute="CREATE USER 'agarzon'@'%' IDENTIFIED BY 'agarzon'; GRANT ALL PRIVILEGES ON *.* TO 'agarzon'@'%' WITH GRANT OPTION; USE wordpress; FLUSH PRIVILEGES;"
 
-sleep infinite
+sleep 5
+
+exec /usr/bin/mysqld --user=root --console
+#mariadb-safe --user=root --datadir="/var/lib/mysql/"

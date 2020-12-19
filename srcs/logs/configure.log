@@ -1,26 +1,26 @@
 Sending build context to Docker daemon   29.7kB
 Step 1/10 : FROM alpine
- ---> d6e46aa2470d
+ ---> 389fef711851
 Step 2/10 : ENV DB_NAME=wordpress
- ---> Running in 6824f1e216e9
-Removing intermediate container 6824f1e216e9
- ---> 25b109a879ba
+ ---> Running in 3a43d18f3b22
+Removing intermediate container 3a43d18f3b22
+ ---> 93cc6d31f831
 Step 3/10 : ENV DB_USERNAME=agarzon
- ---> Running in c2ca4377d5c5
-Removing intermediate container c2ca4377d5c5
- ---> 291313466bcf
+ ---> Running in efca34ad0993
+Removing intermediate container efca34ad0993
+ ---> ce05f3b00898
 Step 4/10 : ENV DB_PWD=agarzon
- ---> Running in 4f83cb1376e2
-Removing intermediate container 4f83cb1376e2
- ---> c29e9d8eaea1
+ ---> Running in a0fad8aebb9a
+Removing intermediate container a0fad8aebb9a
+ ---> fe500454a886
 Step 5/10 : ENV DB_HOST=0.0.0.0
- ---> Running in 4ff31cf19fe2
-Removing intermediate container 4ff31cf19fe2
- ---> b4a8f3799c58
+ ---> Running in 403cbbac45b8
+Removing intermediate container 403cbbac45b8
+ ---> f606a2e53c33
 Step 6/10 : COPY initPhp.sh /tmp/
- ---> 00dc18525d18
+ ---> 4c7ce638584b
 Step 7/10 : RUN apk add phpmyadmin && 	chmod +x /tmp/initPhp.sh
- ---> Running in d60d62b11308
+ ---> Running in 10e1b96498fb
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
 (1/42) Installing php7-common (7.3.25-r0)
@@ -40,7 +40,7 @@ fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.g
 (15/42) Installing php7-ctype (7.3.25-r0)
 (16/42) Installing ca-certificates (20191127-r4)
 (17/42) Installing nghttp2-libs (1.41.0-r0)
-(18/42) Installing libcurl (7.69.1-r1)
+(18/42) Installing libcurl (7.69.1-r3)
 (19/42) Installing php7-curl (7.3.25-r0)
 (20/42) Installing libxau (1.0.9-r0)
 (21/42) Installing libbsd (0.10.0-r0)
@@ -68,12 +68,12 @@ fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.g
 Executing phpmyadmin-5.0.4-r0.post-install
 [91m*
 * phpmyadmin has been installed to:
-*     /usr/share/webapps/phpmyadmin
+[0m[91m*     /usr/share/webapps/phpmyadmin
 * phpmyadmin config file has been installed to:
-*     /etc/phpmyadmin/config.inc.php
+[0m[91m*     /etc/phpmyadmin/config.inc.php
 * If you use apache2:
 *     1) Change the ownership of the config directory:
-*            chown -R apache:apache /etc/phpmyadmin
+[0m[91m*            chown -R apache:apache /etc/phpmyadmin
 *     2) See if you need to modify the apache2 config:
 *            /etc/apache2/conf.d/phpmyadmin.conf
 *     3) Restart apache2 when done.
@@ -81,17 +81,17 @@ Executing phpmyadmin-5.0.4-r0.post-install
 [0mExecuting busybox-1.31.1-r19.trigger
 Executing ca-certificates-20191127-r4.trigger
 OK: 81 MiB in 56 packages
-Removing intermediate container d60d62b11308
- ---> 21efa121f3fa
+Removing intermediate container 10e1b96498fb
+ ---> b973e2f14e25
 Step 8/10 : COPY config.inc.php /etc/phpmyadmin/config.inc.php
- ---> a688c8c0e03b
+ ---> 909cd819fde1
 Step 9/10 : EXPOSE 5000
- ---> Running in 85aec8275059
-Removing intermediate container 85aec8275059
- ---> 93248802badf
-Step 10/10 : ENTRYPOINT [ "sh", "/tmp/initPhp.sh" ]
- ---> Running in 6bf7751c1de9
-Removing intermediate container 6bf7751c1de9
- ---> 3ed1bc248ebd
-Successfully built 3ed1bc248ebd
+ ---> Running in b59b6a3e262a
+Removing intermediate container b59b6a3e262a
+ ---> db884d373962
+Step 10/10 : ENTRYPOINT [ "/tmp/initPhp.sh" ]
+ ---> Running in 4350ae028d7f
+Removing intermediate container 4350ae028d7f
+ ---> bbe4f8faa9ec
+Successfully built bbe4f8faa9ec
 Successfully tagged my_php:latest
