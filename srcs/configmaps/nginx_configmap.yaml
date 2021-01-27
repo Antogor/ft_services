@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata: 
   name: nginx-configmap
 data:
-  wordpress-svc-ip: "192.168.99.103"
+  wordpress-svc-ip: "192.168.99.102"
   wordpress-port: "5050"
-  phpmyadmin-svc-ip: php-service.default 
+  phpmyadmin-svc-ip: "192.168.99.103" 
   phpmyadmin-port: "5000"

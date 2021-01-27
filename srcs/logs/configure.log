@@ -1,97 +1,98 @@
-Sending build context to Docker daemon   29.7kB
+Sending build context to Docker daemon   12.8kB
 Step 1/10 : FROM alpine
- ---> 389fef711851
+ ---> 7731472c3f2a
 Step 2/10 : ENV DB_NAME=wordpress
- ---> Running in 3a43d18f3b22
-Removing intermediate container 3a43d18f3b22
- ---> 93cc6d31f831
+ ---> Running in d48176212f78
+Removing intermediate container d48176212f78
+ ---> c6af3fcd6390
 Step 3/10 : ENV DB_USERNAME=agarzon
- ---> Running in efca34ad0993
-Removing intermediate container efca34ad0993
- ---> ce05f3b00898
+ ---> Running in 9f7d110b0cbe
+Removing intermediate container 9f7d110b0cbe
+ ---> 493e62945e74
 Step 4/10 : ENV DB_PWD=agarzon
- ---> Running in a0fad8aebb9a
-Removing intermediate container a0fad8aebb9a
- ---> fe500454a886
+ ---> Running in 5656aca6e79d
+Removing intermediate container 5656aca6e79d
+ ---> b4ea789f72e4
 Step 5/10 : ENV DB_HOST=0.0.0.0
- ---> Running in 403cbbac45b8
-Removing intermediate container 403cbbac45b8
- ---> f606a2e53c33
+ ---> Running in b5eaf35d8e14
+Removing intermediate container b5eaf35d8e14
+ ---> 7f0c19553e6b
 Step 6/10 : COPY initPhp.sh /tmp/
- ---> 4c7ce638584b
+ ---> acd0761f1340
 Step 7/10 : RUN apk add phpmyadmin && 	chmod +x /tmp/initPhp.sh
- ---> Running in 10e1b96498fb
-fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
-fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
-(1/42) Installing php7-common (7.3.25-r0)
-(2/42) Installing argon2-libs (20190702-r1)
-(3/42) Installing ncurses-terminfo-base (6.2_p20200523-r0)
-(4/42) Installing ncurses-libs (6.2_p20200523-r0)
-(5/42) Installing libedit (20191231.3.1-r0)
-(6/42) Installing pcre2 (10.35-r0)
-(7/42) Installing xz-libs (5.2.5-r0)
-(8/42) Installing libxml2 (2.9.10-r5)
-(9/42) Installing php7 (7.3.25-r0)
-(10/42) Installing php7-openssl (7.3.25-r0)
-(11/42) Installing php7-mysqlnd (7.3.25-r0)
-(12/42) Installing php7-mysqli (7.3.25-r0)
-(13/42) Installing libbz2 (1.0.8-r1)
-(14/42) Installing php7-bz2 (7.3.25-r0)
-(15/42) Installing php7-ctype (7.3.25-r0)
-(16/42) Installing ca-certificates (20191127-r4)
-(17/42) Installing nghttp2-libs (1.41.0-r0)
-(18/42) Installing libcurl (7.69.1-r3)
-(19/42) Installing php7-curl (7.3.25-r0)
-(20/42) Installing libxau (1.0.9-r0)
-(21/42) Installing libbsd (0.10.0-r0)
-(22/42) Installing libxdmcp (1.1.3-r0)
-(23/42) Installing libxcb (1.14-r1)
-(24/42) Installing libx11 (1.6.12-r0)
-(25/42) Installing libxext (1.3.4-r0)
-(26/42) Installing libice (1.0.10-r0)
-(27/42) Installing libuuid (2.35.2-r0)
-(28/42) Installing libsm (1.2.3-r0)
-(29/42) Installing libxt (1.2.0-r0)
-(30/42) Installing libxpm (3.5.13-r0)
-(31/42) Installing brotli-libs (1.0.9-r1)
-(32/42) Installing libpng (1.6.37-r1)
-(33/42) Installing freetype (2.10.4-r0)
-(34/42) Installing libjpeg-turbo (2.0.5-r0)
-(35/42) Installing libwebp (1.1.0-r0)
-(36/42) Installing php7-gd (7.3.25-r0)
-(37/42) Installing php7-json (7.3.25-r0)
-(38/42) Installing php7-mbstring (7.3.25-r0)
-(39/42) Installing php7-session (7.3.25-r0)
-(40/42) Installing libzip (1.6.1-r1)
-(41/42) Installing php7-zip (7.3.25-r0)
-(42/42) Installing phpmyadmin (5.0.4-r0)
+ ---> Running in b79e68d207c0
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/main/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/community/x86_64/APKINDEX.tar.gz
+(1/43) Installing php7-common (7.4.14-r0)
+(2/43) Installing argon2-libs (20190702-r1)
+(3/43) Installing ncurses-terminfo-base (6.2_p20210109-r0)
+(4/43) Installing ncurses-libs (6.2_p20210109-r0)
+(5/43) Installing libedit (20191231.3.1-r1)
+(6/43) Installing pcre2 (10.36-r0)
+(7/43) Installing xz-libs (5.2.5-r0)
+(8/43) Installing libxml2 (2.9.10-r6)
+(9/43) Installing php7 (7.4.14-r0)
+(10/43) Installing php7-openssl (7.4.14-r0)
+(11/43) Installing php7-mysqlnd (7.4.14-r0)
+(12/43) Installing php7-mysqli (7.4.14-r0)
+(13/43) Installing libbz2 (1.0.8-r1)
+(14/43) Installing php7-bz2 (7.4.14-r0)
+(15/43) Installing php7-ctype (7.4.14-r0)
+(16/43) Installing ca-certificates (20191127-r5)
+(17/43) Installing brotli-libs (1.0.9-r3)
+(18/43) Installing nghttp2-libs (1.42.0-r1)
+(19/43) Installing libcurl (7.74.0-r0)
+(20/43) Installing php7-curl (7.4.14-r0)
+(21/43) Installing libxau (1.0.9-r0)
+(22/43) Installing libbsd (0.10.0-r0)
+(23/43) Installing libxdmcp (1.1.3-r0)
+(24/43) Installing libxcb (1.14-r1)
+(25/43) Installing libx11 (1.7.0-r0)
+(26/43) Installing libxext (1.3.4-r0)
+(27/43) Installing libice (1.0.10-r0)
+(28/43) Installing libuuid (2.36.1-r1)
+(29/43) Installing libsm (1.2.3-r0)
+(30/43) Installing libxt (1.2.1-r0)
+(31/43) Installing libxpm (3.5.13-r0)
+(32/43) Installing libpng (1.6.37-r1)
+(33/43) Installing freetype (2.10.4-r1)
+(34/43) Installing libjpeg-turbo (2.0.6-r0)
+(35/43) Installing libwebp (1.1.0-r0)
+(36/43) Installing php7-gd (7.4.14-r0)
+(37/43) Installing php7-json (7.4.14-r0)
+(38/43) Installing oniguruma (6.9.6-r0)
+(39/43) Installing php7-mbstring (7.4.14-r0)
+(40/43) Installing php7-session (7.4.14-r0)
+(41/43) Installing libzip (1.7.3-r2)
+(42/43) Installing php7-zip (7.4.14-r0)
+(43/43) Installing phpmyadmin (5.0.4-r0)
 Executing phpmyadmin-5.0.4-r0.post-install
 [91m*
 * phpmyadmin has been installed to:
-[0m[91m*     /usr/share/webapps/phpmyadmin
+*     /usr/share/webapps/phpmyadmin
 * phpmyadmin config file has been installed to:
-[0m[91m*     /etc/phpmyadmin/config.inc.php
+*     /etc/phpmyadmin/config.inc.php
 * If you use apache2:
 *     1) Change the ownership of the config directory:
-[0m[91m*            chown -R apache:apache /etc/phpmyadmin
+*            chown -R apache:apache /etc/phpmyadmin
 *     2) See if you need to modify the apache2 config:
 *            /etc/apache2/conf.d/phpmyadmin.conf
 *     3) Restart apache2 when done.
 *
-[0mExecuting busybox-1.31.1-r19.trigger
-Executing ca-certificates-20191127-r4.trigger
-OK: 81 MiB in 56 packages
-Removing intermediate container 10e1b96498fb
- ---> b973e2f14e25
+[0mExecuting busybox-1.32.1-r0.trigger
+Executing ca-certificates-20191127-r5.trigger
+OK: 81 MiB in 57 packages
+Removing intermediate container b79e68d207c0
+ ---> 4d0863f2bb90
 Step 8/10 : COPY config.inc.php /etc/phpmyadmin/config.inc.php
- ---> 909cd819fde1
+ ---> 00337cc82fd0
 Step 9/10 : EXPOSE 5000
- ---> Running in b59b6a3e262a
-Removing intermediate container b59b6a3e262a
- ---> db884d373962
+ ---> Running in 919b1b77515f
+Removing intermediate container 919b1b77515f
+ ---> b98d95b3a567
 Step 10/10 : ENTRYPOINT [ "/tmp/initPhp.sh" ]
- ---> Running in 4350ae028d7f
-Removing intermediate container 4350ae028d7f
- ---> bbe4f8faa9ec
-Successfully built bbe4f8faa9ec
+ ---> Running in b7ec28d092c6
+Removing intermediate container b7ec28d092c6
+ ---> 61772c534e3c
+Successfully built 61772c534e3c
 Successfully tagged my_php:latest

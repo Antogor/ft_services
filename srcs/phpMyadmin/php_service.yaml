@@ -4,11 +4,11 @@ metadata:
   labels:
     app: php-service
   name: php-service
-  #annotations:
-  #metallb.universe.tf/allow-shared-ip: "true"
+  annotations:
+    metallb.universe.tf/adress-pool: default
 spec:
   type: LoadBalancer
-  loadBalancerIP: 192.168.99.104
+  loadBalancerIP: 192.168.99.103
   selector:
     app: php-pod
   ports:
@@ -29,6 +29,11 @@ spec:
   selector:
     matchLabels:
       app: php-pod
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
   template:
     metadata:
       labels:

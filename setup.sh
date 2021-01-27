@@ -9,7 +9,8 @@ ENDLINE='\033[0m'
 #Start minikube
 #minikube profile services
 #minikube start
-minikube start -p ft-services --disk-size='10000mb' --vm-driver='virtualbox'
+#minikube start -p ft-services --disk-size='10000mb' --vm-driver='virtualbox'
+minikube start --vm-driver=docker
 
 #Install MetalLb
 echo -e "${K8S}METALLB${ENDLINE}" >srcs/logs/configure.log
@@ -37,7 +38,7 @@ fi
 
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)" >srcs/logs/configure.log 2>&1
 ## Start metalLB
-kubectl apply -f srcs/metalLB/metalLB.yaml >srcs/logs/configure.log 2>&1
+kubectl apply -f srcs/metalLB/metalLB.yaml
 status=$?
 if [ $status = 0 ]; then
 	echo -e "${GREEN}METALLB INSTALLED\n${ENDLINE}" 
@@ -91,7 +92,14 @@ echo -e "${GREEN}CONTAINERS READY\n${ENDLINE}"
 
 #Start services
 echo -e "${K8S}STARTING SERVICES"
-kubectl apply -k srcs/
+#kubectl apply -k srcs/
+kubectl apply -f srcs/configmaps/nginx_configmap.yaml
+kubectl apply -f srcs/configmaps/mysql_configmap.yaml
+kubectl apply -f srcs/secrets/wp_mysql_php_secrets.yaml
+kubectl apply -f srcs/nginx/nginx_service.yaml
+kubectl apply -f srcs/mysql/mysql_service.yaml
+kubectl apply -f srcs/wordpress/wordpress_service.yaml
+kubectl apply -f srcs/phpMyadmin/php_service.yaml
 status=$?
 if [ $status -eq 0 ]; then
 	echo -e "${ENDLINE}${GREEN}\nFT_SERVICES READY${ENDLINE}"

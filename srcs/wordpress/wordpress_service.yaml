@@ -4,11 +4,11 @@ metadata:
   labels:
     app: wordpress-service
   name: wordpress-service
-# annotations:
-    #metallb.universe.tf/allow-shared-ip: "sharing key"
+  annotations:
+    metallb.universe.tf/adress-pool: default
 spec:
   type: LoadBalancer
-  loadBalancerIP: 192.168.99.103
+  loadBalancerIP: 192.168.99.102
   selector:
     app: wordpress-pod
   ports:
@@ -43,6 +43,11 @@ spec:
   selector:
     matchLabels:
       app: wordpress-pod
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
   template:
     metadata:
       labels:
