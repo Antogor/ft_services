@@ -9,8 +9,9 @@ ENDLINE='\033[0m'
 #Start minikube
 #minikube profile services
 #minikube start
+minikube start --disk-size='10000mb' --vm-driver='virtualbox'
 #minikube start -p ft-services --disk-size='10000mb' --vm-driver='virtualbox'
-minikube start --vm-driver=docker
+#minikube start --vm-driver=docker
 
 #Install MetalLb
 echo -e "${K8S}METALLB${ENDLINE}" >srcs/logs/configure.log
