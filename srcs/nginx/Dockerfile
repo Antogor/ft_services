@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.12
 
 COPY default.conf /tmp/
 COPY sshd_config /tmp/

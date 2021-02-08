@@ -1,13 +1,16 @@
-FROM alpine
+FROM alpine:3.12
 
 COPY mariadb-server.cnf /tmp/ 
 COPY start.sh /tmp/
-COPY wordpress.sql /tmp/
+#COPY wordpress.sql /tmp/
 COPY init.sql /tmp/
-COPY agarzon.sql /tmp/
+#COPY agarzon.sql /tmp/
 
-RUN apk update && apk add mariadb mariadb-client openrc && \
-	cp /tmp/mariadb-server.cnf /etc/my.cnf.d/mariadb-server.cnf && \
+RUN apk update && apk add mariadb mariadb-client openrc; \
+	mkdir -p /var/lib/mysql /var/run/mysqld; \
+	chown -R mysl:mysql /var/lib/mysql /var/run/mysqld; \
+	chmod 777 /var/run/mysqld; \
+	cp /tmp/mariadb-server.cnf /etc/my.cnf.d/mariadb-server.cnf; \
 	chmod 777 /tmp/start.sh
 
 ENV MYSQL_DB_NAME=wordpress
