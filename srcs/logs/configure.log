@@ -1,10 +1,10 @@
-Sending build context to Docker daemon  10.75kB
+Sending build context to Docker daemon  10.24kB
 Step 1/6 : FROM alpine:3.12
  ---> 389fef711851
 Step 2/6 : COPY start.sh /tmp/
- ---> f0282f50b5c1
+ ---> 3f0bf49f14a5
 Step 3/6 : RUN apk add phpmyadmin && 	chmod +x /tmp/start.sh
- ---> Running in 6f43a7b846e6
+ ---> Running in 93e5cfd0e77b
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
 (1/42) Installing php7-common (7.3.27-r0)
@@ -65,17 +65,17 @@ Executing phpmyadmin-5.0.4-r0.post-install
 [0mExecuting busybox-1.31.1-r19.trigger
 Executing ca-certificates-20191127-r4.trigger
 OK: 81 MiB in 56 packages
-Removing intermediate container 6f43a7b846e6
- ---> e18c4022b6fb
+Removing intermediate container 93e5cfd0e77b
+ ---> b35f23a8e34b
 Step 4/6 : COPY config.inc.php /etc/phpmyadmin/config.inc.php
- ---> 204902fac960
+ ---> 38d8f763c812
 Step 5/6 : EXPOSE 5000
- ---> Running in a0579a8f2272
-Removing intermediate container a0579a8f2272
- ---> b48b24db969a
+ ---> Running in 393252ccb10d
+Removing intermediate container 393252ccb10d
+ ---> 6ea877b99f91
 Step 6/6 : ENTRYPOINT [ "/tmp/start.sh" ]
- ---> Running in d48a993e6e24
-Removing intermediate container d48a993e6e24
- ---> 13843a074fda
-Successfully built 13843a074fda
+ ---> Running in 02f235ea6029
+Removing intermediate container 02f235ea6029
+ ---> 5fcdbfd39a99
+Successfully built 5fcdbfd39a99
 Successfully tagged my_php:latest

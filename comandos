@@ -1,2 +1,2 @@
 Para subir archivos a ftp
-curl ftp://192.168.99.102:21 --ssl -k -u root:root -T FILE_NAME
+curl ftp://192.168.99.104:21 --ssl -k -u root:root -T FILE_NAME

@@ -7,10 +7,8 @@ RUN apk update && apk add vsftpd && apk add openssl && \
 	openssl req -x509 -nodes -days 365 \
 	-newkey rsa:2048 -subj "/C=SP/ST=Spain/L=Madrid/O=42/CN=127.0.0.1" \
 	-keyout /etc/ssl/private/agarzon.key \
-	-out /etc/ssl/certs/agarzon.crt && \
-#cp /tmp/vsftpd.conf /etc/vsftpd/vsftpd.conf && \
-	mkdir ftps_user
+	-out /etc/ssl/certs/agarzon.crt
 
-EXPOSE 21 30021 20
+EXPOSE 21 30021
 
 ENTRYPOINT /usr/sbin/vsftpd /tmp/vsftpd.conf
