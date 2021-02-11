@@ -89,19 +89,17 @@ if [ $status -ne 0 ]; then
 	echo -e "${RED}Error creating php container: $status ${ENDLINE}"
 	exit $status
 fi
+docker build -t my_influxdb srcs/influxDB/ >srcs/logs/configure.log 2>&1
+status=$?
+if [ $status -ne 0 ]; then
+	echo -e "${RED}Error creating influxDB container: $status ${ENDLINE}"
+	exit $status
+fi
 echo -e "${GREEN}CONTAINERS READY\n${ENDLINE}"
 
 #Start services
 echo -e "${K8S}STARTING SERVICES"
 kubectl apply -k srcs/
-#kubectl apply -f srcs/configmaps/nginx_configmap.yaml
-#kubectl apply -f srcs/configmaps/mysql_configmap.yaml
-#kubectl apply -f srcs/secrets/wp_mysql_php_secrets.yaml
-#kubectl apply -f srcs/nginx/nginx_service.yaml
-#kubectl apply -f srcs/mysql/mysql_service.yaml
-#kubectl apply -f srcs/wordpress/wordpress_service.yaml
-#kubectl apply -f srcs/phpMyadmin/php_service.yaml
-#kubectl apply -f srcs/ftps/ftps_service.yaml
 status=$?
 if [ $status -eq 0 ]; then
 	echo -e "${ENDLINE}${GREEN}\nFT_SERVICES READY${ENDLINE}"
