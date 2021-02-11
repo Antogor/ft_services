@@ -29,7 +29,7 @@ define( 'DB_USER', 'agarzon' );
 define( 'DB_PASSWORD', 'agarzon' );
 
 /** MySQL hostname */
-define( 'DB_HOST', '0.0.0.0' );
+define( 'DB_HOST', 'mysql-service' );
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );

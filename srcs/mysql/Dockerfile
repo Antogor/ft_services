@@ -2,9 +2,8 @@ FROM alpine:3.12
 
 COPY mariadb-server.cnf /tmp/ 
 COPY start.sh /tmp/
-#COPY wordpress.sql /tmp/
+COPY wordpress.sql /tmp/
 COPY init.sql /tmp/
-#COPY agarzon.sql /tmp/
 
 RUN apk update && apk add mariadb mariadb-client openrc; \
 	mkdir -p /var/lib/mysql /var/run/mysqld; \

@@ -1,26 +1,10 @@
-Sending build context to Docker daemon   12.8kB
-Step 1/10 : FROM alpine:3.12
+Sending build context to Docker daemon  10.75kB
+Step 1/6 : FROM alpine:3.12
  ---> 389fef711851
-Step 2/10 : ENV DB_NAME=wordpress
- ---> Running in 19e48fc9b822
-Removing intermediate container 19e48fc9b822
- ---> 6b1bf8b9a66f
-Step 3/10 : ENV DB_USERNAME=agarzon
- ---> Running in de59f08e00b6
-Removing intermediate container de59f08e00b6
- ---> fae2981455fe
-Step 4/10 : ENV DB_PWD=agarzon
- ---> Running in 61dfc96e21f1
-Removing intermediate container 61dfc96e21f1
- ---> bee5d1165b38
-Step 5/10 : ENV DB_HOST=0.0.0.0
- ---> Running in 3dd32d32bda2
-Removing intermediate container 3dd32d32bda2
- ---> 82aa65f91b78
-Step 6/10 : COPY initPhp.sh /tmp/
- ---> 851a0a4b21e5
-Step 7/10 : RUN apk add phpmyadmin && 	chmod +x /tmp/initPhp.sh
- ---> Running in a0062fc0b904
+Step 2/6 : COPY start.sh /tmp/
+ ---> f0282f50b5c1
+Step 3/6 : RUN apk add phpmyadmin && 	chmod +x /tmp/start.sh
+ ---> Running in 6f43a7b846e6
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
 (1/42) Installing php7-common (7.3.27-r0)
@@ -67,12 +51,12 @@ fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.g
 (42/42) Installing phpmyadmin (5.0.4-r0)
 Executing phpmyadmin-5.0.4-r0.post-install
 [91m*
-[0m[91m* phpmyadmin has been installed to:
+* phpmyadmin has been installed to:
 *     /usr/share/webapps/phpmyadmin
 * phpmyadmin config file has been installed to:
 *     /etc/phpmyadmin/config.inc.php
 * If you use apache2:
-[0m[91m*     1) Change the ownership of the config directory:
+*     1) Change the ownership of the config directory:
 *            chown -R apache:apache /etc/phpmyadmin
 *     2) See if you need to modify the apache2 config:
 *            /etc/apache2/conf.d/phpmyadmin.conf
@@ -81,17 +65,17 @@ Executing phpmyadmin-5.0.4-r0.post-install
 [0mExecuting busybox-1.31.1-r19.trigger
 Executing ca-certificates-20191127-r4.trigger
 OK: 81 MiB in 56 packages
-Removing intermediate container a0062fc0b904
- ---> b9f8c9002fa7
-Step 8/10 : COPY config.inc.php /etc/phpmyadmin/config.inc.php
- ---> d98895f7a5c0
-Step 9/10 : EXPOSE 5000
- ---> Running in ba56dee0f842
-Removing intermediate container ba56dee0f842
- ---> 496b9eef7dfa
-Step 10/10 : ENTRYPOINT [ "/tmp/initPhp.sh" ]
- ---> Running in 982633c68cb0
-Removing intermediate container 982633c68cb0
- ---> d35e5de912bb
-Successfully built d35e5de912bb
+Removing intermediate container 6f43a7b846e6
+ ---> e18c4022b6fb
+Step 4/6 : COPY config.inc.php /etc/phpmyadmin/config.inc.php
+ ---> 204902fac960
+Step 5/6 : EXPOSE 5000
+ ---> Running in a0579a8f2272
+Removing intermediate container a0579a8f2272
+ ---> b48b24db969a
+Step 6/6 : ENTRYPOINT [ "/tmp/start.sh" ]
+ ---> Running in d48a993e6e24
+Removing intermediate container d48a993e6e24
+ ---> 13843a074fda
+Successfully built 13843a074fda
 Successfully tagged my_php:latest
