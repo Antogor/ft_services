@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: grafana-service
+  name: grafana-service
+  annotations:
+    metallb.universe.tf/adress-pool: default
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 192.168.99.105
+  selector:
+    app: grafana-pod
+  ports:
+  - name: grafana-ports
+    protocol: TCP
+    port: 3000
+    targetPort: 3000
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana-deployment
+  labels:
+    app: grafana-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana-pod
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: grafana-pod
+    spec:
+      restartPolicy: Always
+      containers:
+      - image: my_grafana
+        name: grafana
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3000

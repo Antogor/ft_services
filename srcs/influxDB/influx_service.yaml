@@ -73,7 +73,7 @@ spec:
         - containerPort: 8086
         volumeMounts:
         - name: influx-pvc
-          mounthPath: /var/lib/influxdb
+          mountPath: /var/lib/influxdb
       volumes:
       - name: influx-pvc
         persistentVolumeClaim:

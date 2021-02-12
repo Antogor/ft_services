@@ -95,11 +95,26 @@ if [ $status -ne 0 ]; then
 	echo -e "${RED}Error creating influxDB container: $status ${ENDLINE}"
 	exit $status
 fi
+docker build -t my_telegraf srcs/telegraf/ >srcs/logs/configure.log 2>&1
+status=$?
+if [ $status -ne 0 ]; then
+	echo -e "${RED}Error creating telegraf container: $status ${ENDLINE}"
+	exit $status
+fi
+docker build -t my_grafana srcs/grafana/ >srcs/logs/configure.log 2>&1
+status=$?
+if [ $status -ne 0 ]; then
+	echo -e "${RED}Error creating grafana container: $status ${ENDLINE}"
+	exit $status
+fi
 echo -e "${GREEN}CONTAINERS READY\n${ENDLINE}"
 
 #Start services
 echo -e "${K8S}STARTING SERVICES"
 kubectl apply -k srcs/
+kubectl apply -f srcs/influxDB/influx_service.yaml
+kubectl apply -f srcs/telegraf/telegraf_service.yaml
+kubectl apply -f srcs/grafana/grafana_service.yaml
 status=$?
 if [ $status -eq 0 ]; then
 	echo -e "${ENDLINE}${GREEN}\nFT_SERVICES READY${ENDLINE}"

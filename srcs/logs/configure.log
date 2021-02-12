@@ -1,81 +1,32 @@
-Sending build context to Docker daemon  10.24kB
+Sending build context to Docker daemon  45.06kB
 Step 1/6 : FROM alpine:3.12
  ---> 389fef711851
 Step 2/6 : COPY start.sh /tmp/
- ---> 3f0bf49f14a5
-Step 3/6 : RUN apk add phpmyadmin && 	chmod +x /tmp/start.sh
- ---> Running in 93e5cfd0e77b
+ ---> 90e46c995eae
+Step 3/6 : RUN apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main libc6-compat; 	wget https://dl.grafana.com/oss/release/grafana-7.4.1.linux-amd64.tar.gz; 	tar -zxvf grafana-7.4.1.linux-amd64.tar.gz; 	mv grafana-7.4.1 grafana; 	chmod 777 /tmp/start.sh
+ ---> Running in 7d1c21e1ff07
+fetch http://dl-cdn.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
-(1/42) Installing php7-common (7.3.27-r0)
-(2/42) Installing argon2-libs (20190702-r1)
-(3/42) Installing ncurses-terminfo-base (6.2_p20200523-r0)
-(4/42) Installing ncurses-libs (6.2_p20200523-r0)
-(5/42) Installing libedit (20191231.3.1-r0)
-(6/42) Installing pcre2 (10.35-r0)
-(7/42) Installing xz-libs (5.2.5-r0)
-(8/42) Installing libxml2 (2.9.10-r5)
-(9/42) Installing php7 (7.3.27-r0)
-(10/42) Installing php7-openssl (7.3.27-r0)
-(11/42) Installing php7-mysqlnd (7.3.27-r0)
-(12/42) Installing php7-mysqli (7.3.27-r0)
-(13/42) Installing libbz2 (1.0.8-r1)
-(14/42) Installing php7-bz2 (7.3.27-r0)
-(15/42) Installing php7-ctype (7.3.27-r0)
-(16/42) Installing ca-certificates (20191127-r4)
-(17/42) Installing nghttp2-libs (1.41.0-r0)
-(18/42) Installing libcurl (7.69.1-r3)
-(19/42) Installing php7-curl (7.3.27-r0)
-(20/42) Installing libxau (1.0.9-r0)
-(21/42) Installing libbsd (0.10.0-r0)
-(22/42) Installing libxdmcp (1.1.3-r0)
-(23/42) Installing libxcb (1.14-r1)
-(24/42) Installing libx11 (1.6.12-r0)
-(25/42) Installing libxext (1.3.4-r0)
-(26/42) Installing libice (1.0.10-r0)
-(27/42) Installing libuuid (2.35.2-r0)
-(28/42) Installing libsm (1.2.3-r0)
-(29/42) Installing libxt (1.2.0-r0)
-(30/42) Installing libxpm (3.5.13-r0)
-(31/42) Installing brotli-libs (1.0.9-r1)
-(32/42) Installing libpng (1.6.37-r1)
-(33/42) Installing freetype (2.10.4-r0)
-(34/42) Installing libjpeg-turbo (2.0.5-r0)
-(35/42) Installing libwebp (1.1.0-r0)
-(36/42) Installing php7-gd (7.3.27-r0)
-(37/42) Installing php7-json (7.3.27-r0)
-(38/42) Installing php7-mbstring (7.3.27-r0)
-(39/42) Installing php7-session (7.3.27-r0)
-(40/42) Installing libzip (1.6.1-r1)
-(41/42) Installing php7-zip (7.3.27-r0)
-(42/42) Installing phpmyadmin (5.0.4-r0)
-Executing phpmyadmin-5.0.4-r0.post-install
-[91m*
-* phpmyadmin has been installed to:
-*     /usr/share/webapps/phpmyadmin
-* phpmyadmin config file has been installed to:
-*     /etc/phpmyadmin/config.inc.php
-* If you use apache2:
-*     1) Change the ownership of the config directory:
-*            chown -R apache:apache /etc/phpmyadmin
-*     2) See if you need to modify the apache2 config:
-*            /etc/apache2/conf.d/phpmyadmin.conf
-*     3) Restart apache2 when done.
-*
-[0mExecuting busybox-1.31.1-r19.trigger
-Executing ca-certificates-20191127-r4.trigger
-OK: 81 MiB in 56 packages
-Removing intermediate container 93e5cfd0e77b
- ---> b35f23a8e34b
-Step 4/6 : COPY config.inc.php /etc/phpmyadmin/config.inc.php
- ---> 38d8f763c812
-Step 5/6 : EXPOSE 5000
- ---> Running in 393252ccb10d
-Removing intermediate container 393252ccb10d
- ---> 6ea877b99f91
-Step 6/6 : ENTRYPOINT [ "/tmp/start.sh" ]
- ---> Running in 02f235ea6029
-Removing intermediate container 02f235ea6029
- ---> 5fcdbfd39a99
-Successfully built 5fcdbfd39a99
-Successfully tagged my_php:latest
+(1/2) Upgrading musl (1.1.24-r10 -> 1.2.2-r1)
+(2/2) Installing libc6-compat (1.2.2-r1)
+OK: 6 MiB in 15 packages
+[91mwget: bad address 'dl.grafana.com'
+[0m[91mtar: can't open 'grafana-7.4.1.linux-amd64.tar.gz': No such file or directory
+[0m[91mmv: can't rename 'grafana-7.4.1': No such file or directory
+[0mRemoving intermediate container 7d1c21e1ff07
+ ---> dcc8d16d06ff
+Step 4/6 : EXPOSE 3000
+ ---> Running in d518ccae3dda
+Removing intermediate container d518ccae3dda
+ ---> ca3bf454139b
+Step 5/6 : WORKDIR /grafana/bin/
+ ---> Running in d03726ae4338
+Removing intermediate container d03726ae4338
+ ---> c2afe82f919d
+Step 6/6 : ENTRYPOINT [ "./grafana-server" ]
+ ---> Running in 9dfe12f58313
+Removing intermediate container 9dfe12f58313
+ ---> 575c79c97299
+Successfully built 575c79c97299
+Successfully tagged my_grafana:latest
