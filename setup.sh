@@ -125,9 +125,3 @@ fi
 
 /usr/bin/firefox 192.168.99.101
 
-sleep 10 
-kubectl get all
-#Dashboard
-#minikube dashboard
-
-
