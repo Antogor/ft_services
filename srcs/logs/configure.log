@@ -1,32 +1,29 @@
-Sending build context to Docker daemon  45.06kB
+Sending build context to Docker daemon  174.7MB
 Step 1/6 : FROM alpine:3.12
  ---> 389fef711851
-Step 2/6 : COPY start.sh /tmp/
- ---> 90e46c995eae
-Step 3/6 : RUN apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main libc6-compat; 	wget https://dl.grafana.com/oss/release/grafana-7.4.1.linux-amd64.tar.gz; 	tar -zxvf grafana-7.4.1.linux-amd64.tar.gz; 	mv grafana-7.4.1 grafana; 	chmod 777 /tmp/start.sh
- ---> Running in 7d1c21e1ff07
+Step 2/6 : COPY grafana /tmp/grafana/
+ ---> 5e4c62160d80
+Step 3/6 : RUN apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main libc6-compat
+ ---> Running in 232aa21da534
 fetch http://dl-cdn.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
 (1/2) Upgrading musl (1.1.24-r10 -> 1.2.2-r1)
 (2/2) Installing libc6-compat (1.2.2-r1)
 OK: 6 MiB in 15 packages
-[91mwget: bad address 'dl.grafana.com'
-[0m[91mtar: can't open 'grafana-7.4.1.linux-amd64.tar.gz': No such file or directory
-[0m[91mmv: can't rename 'grafana-7.4.1': No such file or directory
-[0mRemoving intermediate container 7d1c21e1ff07
- ---> dcc8d16d06ff
+Removing intermediate container 232aa21da534
+ ---> 64848c1f3577
 Step 4/6 : EXPOSE 3000
- ---> Running in d518ccae3dda
-Removing intermediate container d518ccae3dda
- ---> ca3bf454139b
-Step 5/6 : WORKDIR /grafana/bin/
- ---> Running in d03726ae4338
-Removing intermediate container d03726ae4338
- ---> c2afe82f919d
+ ---> Running in e19b4b867678
+Removing intermediate container e19b4b867678
+ ---> 0567b24884fc
+Step 5/6 : WORKDIR /tmp/grafana/bin/
+ ---> Running in 788b0f3879c3
+Removing intermediate container 788b0f3879c3
+ ---> 29feb7b53742
 Step 6/6 : ENTRYPOINT [ "./grafana-server" ]
- ---> Running in 9dfe12f58313
-Removing intermediate container 9dfe12f58313
- ---> 575c79c97299
-Successfully built 575c79c97299
+ ---> Running in 8c110292cd3a
+Removing intermediate container 8c110292cd3a
+ ---> 56384b3dcfff
+Successfully built 56384b3dcfff
 Successfully tagged my_grafana:latest
