@@ -11,4 +11,4 @@ RUN apk update && apk add vsftpd && apk add openssl && \
 
 EXPOSE 21 30021
 
-ENTRYPOINT /usr/sbin/vsftpd /tmp/vsftpd.conf
+ENTRYPOINT /usr/sbin/vsftpd /tmp/vsftpd.conf 

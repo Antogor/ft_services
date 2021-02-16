@@ -123,5 +123,5 @@ else
 	exit $status
 fi
 
-/usr/bin/firefox 192.168.99.101
+#/usr/bin/firefox 192.168.99.101
 

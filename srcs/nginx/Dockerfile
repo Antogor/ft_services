@@ -19,5 +19,4 @@ COPY index.html /var/www/
 
 EXPOSE 80 443 22 
 
-#ENTRYPOINT /usr/sbin/sshd -f /tmp/sshd_config; nginx -g 'daemon off;'
 ENTRYPOINT [ "/tmp/start.sh" ]

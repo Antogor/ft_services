@@ -8,11 +8,9 @@ RUN apk add php7 php7-fpm php7-mbstring php7-mysqli php7-json php7-session && ap
 	tar -xzvf wordpress-latest-es_ES.tar.gz -C /var/www/ && \
 	rm -f wordpress-latest-es_ES.tar.gz && \
 	rm -f /var/www/wordpress/wp-config-sample.php && \
-	chmod 777 /tmp/start.sh; \
-	apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
+	chmod 777 /tmp/start.sh
 
 COPY wp-config.php /var/www/wordpress/
-COPY telegraf.conf /etc/telegraf/telegraf.conf
 
 EXPOSE 5050
 
